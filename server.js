@@ -48,6 +48,7 @@ app.use(async (req, res) => {
         "query": info.query
     }
     await dataCollectionObject.insertOne(reqObj);
+    res.send({ip:clientIp})
 });
 
 
