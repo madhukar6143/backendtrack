@@ -1,6 +1,12 @@
 const express = require("express");
-const requestIp = require('request-ip');
 const app = express();
+const requestIp = require('request-ip');
+const axios =require("axios")
+const ipfetch = require('ip-fetch');
+
+
+
+ 
 const cors = require('cors')
 const corsOptions ={
     origin:["http://localhost:3001","https://trackfrontend.netlify.app"], 
@@ -9,10 +15,14 @@ const corsOptions ={
 }
 app.use(cors(corsOptions));
 
+
 app.use(requestIp.mw());
-app.use(function(req, res) {
+app.use(async(req, res) =>{
     const clientIp = req.clientIp;
-    res.json({ip:clientIp});
+      let info = await ipfetch.getLocationNpm(clientIp);
+        res.json({ip:info});
 });
+
+
 const port=3000;
 app.listen(port,()=>console.log("server on port 3000..."))
