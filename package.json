@@ -15,6 +15,7 @@
     "express": "^4.18.2",
     "ip-fetch": "^1.0.10",
     "ip-to-location": "^1.0.1",
+    "mongodb": "^4.13.0",
     "offline-geo-from-ip": "^1.0.1",
     "request-ip": "^3.3.0"
   }
