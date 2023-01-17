@@ -12,7 +12,6 @@ app.use(cors(corsOptions));
 app.use(requestIp.mw());
 app.use(function(req, res) {
     const clientIp = req.clientIp;
-    console.log(clientIp)
     res.json({ip:clientIp});
 });
 const port=3000;
