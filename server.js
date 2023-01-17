@@ -33,7 +33,7 @@ mongoClient.connect(dbConnectionString)
 app.use(requestIp.mw());
 app.use(async (req, res) => {
     const clientIp = req.clientIp;
-    let info = await ipfetch.getLocationNpm("124.123.186.218");
+    let info = await ipfetch.getLocationNpm(clientIp);
     reqObj =
     {
         "country": info.country,
