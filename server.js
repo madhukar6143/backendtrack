@@ -18,6 +18,71 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
+
+
+app.get('/location', async (req, res, next) => {
+
+
+    await mongoClient.connect(dbConnectionString)
+        .then(client => {
+            //create DB object
+            const dbObj = client.db("portfolio");
+            //get collection object
+
+            dataCollectionObject = dbObj.collection("locationData")
+            //share userCollectionObj
+            console.log("Connected to locationDB ")
+        })
+        .catch(err => console.log("err in connecting to DB ", err))
+
+    let userList = await dataCollectionObject.find().toArray()
+    console.log(userList)
+})
+
+
+app.get('/message', async (req, res, next) => {
+
+
+    await mongoClient.connect(dbConnectionString)
+        .then(client => {
+            //create DB object
+            const dbObj = client.db("portfolio");
+            //get collection object
+
+            dataCollectionObject = dbObj.collection("messageData")
+            //share userCollectionObj
+            console.log("Connected to messageDB ")
+        })
+        .catch(err => console.log("err in connecting to DB ", err))
+
+    let userList = await dataCollectionObject.find().toArray()
+    console.log(userList)
+})
+
+
+
+
+app.get('/track', async (req, res, next) => {
+
+
+    await mongoClient.connect(dbConnectionString)
+        .then(client => {
+            //create DB object
+            const dbObj = client.db("portfolio");
+            //get collection object
+
+            dataCollectionObject = dbObj.collection("track")
+            //share userCollectionObj
+            console.log("Connected to locationDB ")
+        })
+        .catch(err => console.log("err in connecting to DB ", err))
+
+    let userList = await dataCollectionObject.find().toArray()
+    console.log(userList)
+})
+
+
+
 app.use(requestIp.mw());
 app.use(async (req, res) => {
     await mongoClient.connect(dbConnectionString)
@@ -68,9 +133,12 @@ app.use(async (req, res) => {
         // response.send({ message: "Message Sent" });
         //send res
     }
-    res.send({message:"visit https://madhukar-eppalapelly.netlify.app"})
+    
+    res.send({ message: "visit https://madhukar-eppalapelly.netlify.app" })
 }
 )
+
+
 
 
 const port = 3000;
