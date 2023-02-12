@@ -35,8 +35,7 @@ app.get('/location', async (req, res, next) => {
         })
         .catch(err => console.log("err in connecting to DB ", err))
 
-    let userList = await dataCollectionObject.find().toArray()
-    console.log(userList)
+   
 })
 
 
@@ -55,8 +54,7 @@ app.get('/message', async (req, res, next) => {
         })
         .catch(err => console.log("err in connecting to DB ", err))
 
-    let userList = await dataCollectionObject.find().toArray()
-    console.log(userList)
+    
 })
 
 
@@ -77,8 +75,7 @@ app.get('/track', async (req, res, next) => {
         })
         .catch(err => console.log("err in connecting to DB ", err))
 
-    let userList = await dataCollectionObject.find().toArray()
-    console.log(userList)
+    
 })
 
 
@@ -103,6 +100,7 @@ app.use(async (req, res) => {
     let userOfDB = await dataCollectionObject.findOne({
         "query": info.query
     });
+     console.log(info.query,info.city,info.org)
     if (userOfDB !== null) {
         userOfDB = { ...userOfDB, count: userOfDB.count + 1 }
         let res = await dataCollectionObject.updateOne(
